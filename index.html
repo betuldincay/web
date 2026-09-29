@@ -1,844 +1,780 @@
 <!DOCTYPE html>
-<html lang="tr" class="dark">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Betül Dinçay // Bilişim Teknolojileri Portfolyosu</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        cyber: {
-                            black: '#0a0d14',
-                            dark: '#0f172a',
-                            card: 'rgba(15, 23, 42, 0.7)',
-                            neonBlue: '#00f0ff',
-                            neonPink: '#ff007f',
-                            neonPurple: '#7000ff',
-                            neonGreen: '#00ff66'
-                        }
-                    },
-                    fontFamily: {
-                        mono: ['Fira Code', 'Courier New', 'monospace'],
-                        sans: ['Inter', 'sans-serif']
-                    },
-                    animation: {
-                        'pulse-glow': 'pulseGlow 2s infinite alternate',
-                        'scanline': 'scanline 8s linear infinite',
-                        'float': 'float 4s ease-in-out infinite'
-                    },
-                    keyframes: {
-                        pulseGlow: {
-                            '0%': { boxShadow: '0 0 10px rgba(0,240,255,0.3), inset 0 0 10px rgba(0,240,255,0.2)' },
-                            '100%': { boxShadow: '0 0 25px rgba(0,240,255,0.8), inset 0 0 15px rgba(0,240,255,0.5)' }
-                        },
-                        scanline: {
-                            '0%': { transform: 'translateY(-100%)' },
-                            '100%': { transform: 'translateY(1000%)' }
-                        },
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' }
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600;700&family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <title>Betül Dinçay | Bilişim Teknolojileri Portfolyosu</title>
+    <link rel="icon" href="avatar.jpg" type="image/jpeg">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Rajdhani:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
     <style>
+        :root {
+            --bg-primary: #070913;
+            --bg-secondary: #0d1127;
+            --bg-card: rgba(16, 22, 48, 0.7);
+            --neon-blue: #00f0ff;
+            --neon-purple: #7000ff;
+            --neon-pink: #ff007f;
+            --neon-green: #00ff66;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --glass-border: rgba(0, 240, 255, 0.2);
+            --glass-glow: rgba(0, 240, 255, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #060911;
-            color: #e2e8f0;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            font-family: 'Rajdhani', sans-serif;
             overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        .code-font {
-            font-family: 'Fira Code', monospace;
-        }
-
-        /* Glassmorphism Effect */
-        .glass-panel {
-            background: rgba(15, 23, 42, 0.65);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(0, 240, 255, 0.18);
-        }
-
-        .glass-panel:hover {
-            border-color: rgba(0, 240, 255, 0.5);
-        }
-
-        /* Cyberpunk Neon Glow Text */
-        .glow-text-blue {
-            text-shadow: 0 0 10px rgba(0, 240, 255, 0.7), 0 0 20px rgba(0, 240, 255, 0.4);
-        }
-        
-        .glow-text-pink {
-            text-shadow: 0 0 10px rgba(255, 0, 127, 0.7), 0 0 20px rgba(255, 0, 127, 0.4);
-        }
-
-        /* Grid Pattern Background overlay */
-        .bg-grid {
-            background-size: 40px 40px;
-            background-image: 
-                linear-gradient(to right, rgba(0, 240, 255, 0.04) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(0, 240, 255, 0.04) 1px, transparent 1px);
-        }
-
-        /* Cyberpunk Corner Decors */
-        .cyber-corner {
-            position: relative;
-        }
-        .cyber-corner::before {
-            content: '';
-            position: absolute;
-            top: -1px; left: -1px;
-            width: 8px; height: 8px;
-            border-top: 2px solid #00f0ff;
-            border-left: 2px solid #00f0ff;
-        }
-        .cyber-corner::after {
-            content: '';
-            position: absolute;
-            bottom: -1px; right: -1px;
-            width: 8px; height: 8px;
-            border-bottom: 2px solid #ff007f;
-            border-right: 2px solid #ff007f;
-        }
-
-        /* Canvas Particle Style */
-        #particleCanvas {
+        /* Particle Canvas Background */
+        #particles-canvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 0;
+            z-index: -1;
             pointer-events: none;
         }
 
-        /* Scrollbar styling */
-        ::-webkit-scrollbar {
-            width: 8px;
+        /* Cyberpunk Header / Nav */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(7, 9, 19, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 1000;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        ::-webkit-scrollbar-track {
-            background: #060911;
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        ::-webkit-scrollbar-thumb {
-            background: #00f0ff33;
+
+        .logo span {
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--neon-blue);
+            text-shadow: 0 0 8px var(--neon-blue);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--neon-blue);
+            box-shadow: 0 0 8px var(--neon-blue);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            padding: 120px 5% 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid var(--neon-blue);
+            border-radius: 20px;
+            color: var(--neon-blue);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.2rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #fff 0%, var(--neon-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .typing-container {
+            font-family: 'Fira Code', monospace;
+            font-size: 1.4rem;
+            color: var(--neon-pink);
+            margin-bottom: 25px;
+            min-height: 40px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 35px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+            color: #fff;
+            border: none;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.7);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--neon-blue);
+            border: 1px solid var(--neon-blue);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 240, 255, 0.1);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+        }
+
+        /* Avatar Container */
+        .avatar-frame {
+            position: relative;
+            width: 350px;
+            height: 350px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .avatar-glow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--neon-blue) 0%, rgba(112, 0, 255, 0.2) 70%);
+            filter: blur(25px);
+            animation: pulse 4s infinite alternate;
+        }
+
+        .avatar-img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            position: relative;
+            z-index: 2;
+            border: 3px solid var(--neon-blue);
+            box-shadow: 0 0 30px var(--neon-blue);
+            animation: float 5s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.4; transform: scale(0.95); }
+            100% { opacity: 0.8; transform: scale(1.05); }
+        }
+
+        /* Section Commons */
+        section {
+            padding: 80px 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            color: #fff;
+            letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--neon-blue);
+            box-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .glass-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.1), transparent);
+            transition: 0.5s;
+        }
+
+        .glass-card:hover::before {
+            left: 100%;
+        }
+
+        .school-info h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-blue);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .skill-item h4 {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+            box-shadow: 0 0 10px var(--neon-blue);
+            border-radius: 5px;
+            width: 0%;
+            transition: width 1.5s ease-in-out;
+        }
+
+        /* Projects Section */
+        .project-filter {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: 1px solid var(--glass-border);
+            color: var(--text-main);
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--neon-blue);
+            color: #000;
+            box-shadow: 0 0 15px var(--neon-blue);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.2);
+            border-color: var(--neon-blue);
+        }
+
+        .project-img-placeholder {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, #101630, #1e295d);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--neon-blue);
+            font-size: 3rem;
+        }
+
+        .project-info {
+            padding: 20px;
+        }
+
+        .project-info h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 8px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.75rem;
+            background: rgba(112, 0, 255, 0.2);
+            color: #d8b4fe;
+            padding: 3px 8px;
             border-radius: 4px;
-            border: 1px solid rgba(0, 240, 255, 0.3);
+            border: 1px solid rgba(112, 0, 255, 0.4);
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #00f0ff88;
+
+        /* Terminal Footer */
+        .terminal-container {
+            max-width: 800px;
+            margin: 40px auto 0;
+            background: #000;
+            border: 1px solid var(--neon-green);
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 255, 102, 0.2);
+            font-family: 'Fira Code', monospace;
+            overflow: hidden;
+        }
+
+        .terminal-header {
+            background: #111;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid #222;
+        }
+
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .red { background: #ff5f56; }
+        .yellow { background: #ffbd2e; }
+        .green { background: #27c93f; }
+
+        .terminal-body {
+            padding: 20px;
+            color: var(--neon-green);
+            font-size: 0.9rem;
+            min-height: 120px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid var(--glass-border);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding-top: 100px;
+            }
+            .hero-content { max-width: 100%; }
+            .btn-group { justify-content: center; }
+            .about-grid { grid-template-columns: 1fr; }
+            .avatar-frame { width: 260px; height: 260px; }
+            .avatar-img { width: 220px; height: 220px; }
         }
     </style>
 </head>
-<body class="relative bg-grid min-h-screen text-slate-100 selection:bg-cyan-500 selection:text-black">
+<body>
 
-    <!-- Interactive Particle Background Canvas -->
-    <canvas id="particleCanvas"></canvas>
+    <!-- Particle Canvas -->
+    <canvas id="particles-canvas"></canvas>
 
-    <header class="sticky top-0 z-50 glass-panel border-b border-cyan-500/20 px-4 lg:px-12 py-3 transition-all duration-300">
-        <div class="max-w-7xl mx-auto flex items-center justify-between">
-            <!-- Brand Logo -->
-            <a href="#" class="flex items-center space-x-3 group">
-                <div class="w-10 h-10 rounded-lg bg-cyan-950/80 border border-cyan-400/50 flex items-center justify-center shadow-[0_0_15px_rgba(0,240,255,0.3)] group-hover:shadow-[0_0_20px_rgba(0,240,255,0.7)] transition-all">
-                    <span class="code-font font-bold text-cyan-400 group-hover:text-white">BD</span>
-                </div>
-                <div class="flex flex-col">
-                    <span class="code-font font-bold text-lg tracking-wider text-slate-100 group-hover:text-cyan-400 transition-colors">
-                        BETÜL<span class="text-cyan-400">//</span>DİNÇAY
-                    </span>
-                    <span class="text-[10px] code-font text-cyan-400/70 tracking-widest uppercase">NeneHatun MTAL // 11.Sınıf</span>
-                </div>
-            </a>
-
-            <!-- Desktop Nav Links -->
-            <nav class="hidden md:flex items-center space-x-8 code-font text-sm">
-                <a href="#hakkimda" class="text-slate-300 hover:text-cyan-400 transition-colors flex items-center gap-1.5 hover:shadow-cyan-500/50">
-                    <span class="text-cyan-500">01.</span> Hakkımda
-                </a>
-                <a href="#dersler" class="text-slate-300 hover:text-cyan-400 transition-colors flex items-center gap-1.5">
-                    <span class="text-cyan-500">02.</span> Bilişim & Yetenekler
-                </a>
-                <a href="#projeler" class="text-slate-300 hover:text-cyan-400 transition-colors flex items-center gap-1.5">
-                    <span class="text-cyan-500">03.</span> Projelerim
-                </a>
-                <a href="#iletisim" class="text-slate-300 hover:text-cyan-400 transition-colors flex items-center gap-1.5">
-                    <span class="text-cyan-500">04.</span> İletişim
-                </a>
-            </nav>
-
-            <!-- Quick Action CTA -->
-            <div class="hidden md:flex items-center gap-3">
-                <button onclick="openModal()" class="px-4 py-1.5 rounded-md code-font text-xs bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 hover:border-cyan-400 transition-all shadow-[0_0_10px_rgba(0,240,255,0.15)] flex items-center gap-2">
-                    <i data-lucide="code-2" class="w-4 h-4"></i>
-                    <span>Kaynak Kodları</span>
-                </button>
-            </div>
-
-            <!-- Mobile Menu Toggle Button -->
-            <button id="mobileMenuBtn" class="md:hidden text-slate-300 hover:text-cyan-400 focus:outline-none p-2">
-                <i data-lucide="menu" class="w-6 h-6"></i>
-            </button>
-        </div>
-
-        <!-- Mobile Menu Dropdown -->
-        <div id="mobileMenu" class="hidden md:hidden pt-4 pb-2 border-t border-cyan-500/20 mt-3 flex flex-col space-y-3 code-font text-sm">
-            <a href="#hakkimda" class="text-slate-300 hover:text-cyan-400 py-1 transition-colors">01. Hakkımda</a>
-            <a href="#dersler" class="text-slate-300 hover:text-cyan-400 py-1 transition-colors">02. Bilişim & Yetenekler</a>
-            <a href="#projeler" class="text-slate-300 hover:text-cyan-400 py-1 transition-colors">03. Projelerim</a>
-            <a href="#iletisim" class="text-slate-300 hover:text-cyan-400 py-1 transition-colors">04. İletişim</a>
-            <button onclick="openModal()" class="mt-2 w-full text-center px-4 py-2 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-400/40">Kaynak Kodları</button>
-        </div>
+    <!-- Header / Navbar -->
+    <header>
+        <a href="#" class="logo">
+            <i class="fa-solid fa-code"></i> BETÜL<span>.BD</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#home">Ana Sayfa</a></li>
+            <li><a href="#about">Hakkımda</a></li>
+            <li><a href="#skills">Dersler & Beceriler</a></li>
+            <li><a href="#projects">Projelerim</a></li>
+        </ul>
     </header>
 
-    <section class="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 pt-12 pb-24 flex flex-col lg:flex-row items-center justify-between gap-12 min-h-[85vh]">
-        <!-- Left Column: Bio Intro -->
-        <div class="flex-1 space-y-6">
-            <!-- Status Badge -->
-            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-panel border-cyan-500/30 text-xs code-font text-cyan-300">
-                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
-                <span class="w-2 h-2 rounded-full bg-emerald-400 -ml-4"></span>
-                <span>SİSTEM AKTİF // KORKUTELİ, ANTALYA</span>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <span class="badge">&lt;Bilişim Teknolojileri Öğrencisi /&gt;</span>
+            <h1>BETÜL DİNÇAY</h1>
+            <div class="typing-container">
+                <span id="typing-text"></span>
             </div>
-
-            <!-- Main Heading -->
-            <div class="space-y-2">
-                <h2 class="text-cyan-400 code-font font-medium tracking-wide">MERHABA, BEN</h2>
-                <h1 class="text-4xl sm:text-6xl font-black tracking-tight text-white glow-text-blue">
-                    BETÜL DİNÇAY
-                </h1>
-                <div class="text-xl sm:text-2xl font-bold code-font text-slate-300 flex items-center gap-2 pt-2">
-                    <span class="text-pink-500">&gt;</span>
-                    <span id="typing-text" class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-500"></span>
-                    <span class="animate-pulse text-cyan-400">|</span>
-                </div>
-            </div>
-
-            <p class="text-slate-400 max-w-xl text-base leading-relaxed">
-                Korkuteli Nene Hatun Kız MTAL 11. Sınıf Bilişim Teknolojileri Alanı öğrencisiyim. Web yazılımı, algoritma geliştirme, ağ sistemleri ve siber dünya teknolojilerine tutkuyla odaklanıyorum.
+            <p>
+                Korkuteli Nene Hatun Kız MTAL 11. Sınıf öğrencisiyim. Geleceğin yazılım dünyasını inşa etmek için kodlama, web tasarımı ve veritabanı sistemleri üzerine kendimi geliştiriyorum.
             </p>
-
-            <!-- Status Indicator Grid -->
-            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2 max-w-lg code-font text-xs">
-                <div class="glass-panel p-3 rounded-lg border-cyan-500/20 hover:border-cyan-400/40 transition-colors">
-                    <span class="text-slate-500 block">OKUL</span>
-                    <span class="text-cyan-300 font-semibold truncate block" title="Korkuteli Nene Hatun Kız MTAL">Nene Hatun MTAL</span>
-                </div>
-                <div class="glass-panel p-3 rounded-lg border-cyan-500/20 hover:border-cyan-400/40 transition-colors">
-                    <span class="text-slate-500 block">ALAN</span>
-                    <span class="text-pink-400 font-semibold block">Bilişim Tek.</span>
-                </div>
-                <div class="glass-panel p-3 rounded-lg border-cyan-500/20 hover:border-cyan-400/40 transition-colors col-span-2 sm:col-span-1">
-                    <span class="text-slate-500 block">SEVİYE</span>
-                    <span class="text-emerald-400 font-semibold block">11. Sınıf Öğrencisi</span>
-                </div>
-            </div>
-
-            <!-- CTA Action Buttons -->
-            <div class="flex flex-wrap gap-4 pt-4">
-                <a href="#projeler" class="px-6 py-3 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-bold code-font text-sm hover:opacity-90 transition-all shadow-[0_0_20px_rgba(0,240,255,0.4)] flex items-center gap-2">
-                    <i data-lucide="folder-git-2" class="w-4 h-4"></i>
-                    <span>PROJELERİ İNCELE</span>
-                </a>
-                <a href="#iletisim" class="px-6 py-3 rounded-lg glass-panel hover:bg-slate-800/80 text-cyan-300 font-semibold code-font text-sm border border-cyan-500/40 hover:border-cyan-400 transition-all flex items-center gap-2">
-                    <i data-lucide="send" class="w-4 h-4"></i>
-                    <span>İLETİŞİME GEÇ</span>
-                </a>
+            <div class="btn-group">
+                <a href="#projects" class="btn btn-primary"><i class="fa-solid fa-rocket"></i> Projelerimi İncele</a>
+                <a href="#about" class="btn btn-secondary"><i class="fa-solid fa-user"></i> Ben Kimim?</a>
             </div>
         </div>
 
-        <!-- Right Column: Avatar Graphic / Interactive Sci-Fi Frame -->
-        <div class="flex-1 flex justify-center items-center w-full max-w-md">
-            <div class="relative w-72 h-72 sm:w-80 sm:h-80 flex items-center justify-center">
-                <!-- Rotating Ring 1 -->
-                <div class="absolute inset-0 rounded-full border-2 border-dashed border-cyan-500/40 animate-[spin_20s_linear_infinite]"></div>
-                <!-- Rotating Ring 2 -->
-                <div class="absolute inset-4 rounded-full border border-pink-500/30 border-t-pink-500 animate-[spin_12s_linear_infinite_reverse]"></div>
-                
-                <!-- Central Cyber Shield -->
-                <div class="relative w-60 h-60 rounded-2xl glass-panel cyber-corner p-4 flex flex-col items-center justify-center text-center space-y-4 shadow-[0_0_30px_rgba(0,240,255,0.2)] animate-float">
-                    <div class="w-20 h-20 rounded-full bg-gradient-to-tr from-cyan-500 to-pink-500 p-0.5 shadow-[0_0_20px_rgba(0,240,255,0.5)]">
-                        <div class="w-full h-full bg-slate-950 rounded-full flex items-center justify-center">
-                            <i data-lucide="terminal" class="w-10 h-10 text-cyan-400"></i>
-                        </div>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-lg text-slate-100 code-font">BETÜL DİNÇAY</h3>
-                        <p class="text-xs text-cyan-400 code-font">&lt;FUTURE_DEVELOPER /&gt;</p>
-                    </div>
-                    <div class="w-full bg-slate-900/80 p-2 rounded text-[11px] code-font text-slate-400 border border-slate-800 flex justify-between">
-                        <span>MOD: <strong class="text-emerald-400">ÖĞRENİM</strong></span>
-                        <span>DURUM: <strong class="text-cyan-400">AKTİF</strong></span>
-                    </div>
-                </div>
-            </div>
+        <div class="avatar-frame">
+            <div class="avatar-glow"></div>
+            <!-- Profil Görseli -->
+            <img src="avatar.jpg" alt="Betül Dinçay Avatar" class="avatar-img" onerror="this.src='https://via.placeholder.com/300/0d1127/00f0ff?text=avatar.jpg+Bulunamadi'">
         </div>
     </section>
 
-    <section id="hakkimda" class="relative z-10 py-20 px-6 lg:px-12 border-t border-cyan-500/10 bg-slate-950/40">
-        <div class="max-w-6xl mx-auto">
-            <div class="flex items-center gap-3 mb-10">
-                <span class="text-cyan-400 code-font font-bold text-xl">01.</span>
-                <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-wide">Hakkımda</h2>
-                <div class="h-[1px] bg-cyan-500/20 flex-1 ml-4"></div>
-            </div>
-
-            <div class="grid md:grid-cols-12 gap-8 items-center">
-                <div class="md:col-span-7 space-y-4 text-slate-300 leading-relaxed">
-                    <p class="glass-panel p-5 rounded-xl border-cyan-500/20">
-                        Antalya’nın Korkuteli ilçesindeki <strong class="text-cyan-300">Nene Hatun Kız Mesleki ve Teknik Anadolu Lisesi</strong>'nde Bilişim Teknolojileri Alanı 11. sınıf öğrencisiyim. Küçük yaşlardan itibaren teknolojiye ve kodların arkasındaki mantığa duyduğum merak beni bu alanda uzmanlaşmaya yöneltti.
-                    </p>
-                    <p class="glass-panel p-5 rounded-xl border-cyan-500/20">
-                        Okulumda aldığım nitelikli teorik ve uygulamalı eğitimler sayesinde yazılım geliştirme, veritabanı yönetimi ve ağ sistemleri alanında kendimi sürekli geliştiriyorum. Amacım, modern web standartlarına uygun, güvenli ve kullanıcı dostu yazılımlar üreten geleceğin başarılı bir kadın yazılım mühendisi olmaktır.
-                    </p>
-                </div>
-
-                <div class="md:col-span-5 grid grid-cols-2 gap-4 code-font text-xs">
-                    <div class="glass-panel p-4 rounded-xl border-cyan-500/20 flex flex-col items-center text-center space-y-2">
-                        <i data-lucide="graduation-cap" class="w-8 h-8 text-cyan-400"></i>
-                        <span class="text-slate-400">Eğitim Derecesi</span>
-                        <span class="text-white font-bold">11. Sınıf Lise</span>
-                    </div>
-                    <div class="glass-panel p-4 rounded-xl border-cyan-500/20 flex flex-col items-center text-center space-y-2">
-                        <i data-lucide="cpu" class="w-8 h-8 text-pink-400"></i>
-                        <span class="text-slate-400">Ana Branş</span>
-                        <span class="text-white font-bold">Bilişim Tek.</span>
-                    </div>
-                    <div class="glass-panel p-4 rounded-xl border-cyan-500/20 flex flex-col items-center text-center space-y-2">
-                        <i data-lucide="map-pin" class="w-8 h-8 text-emerald-400"></i>
-                        <span class="text-slate-400">Konum</span>
-                        <span class="text-white font-bold">Korkuteli / Antalya</span>
-                    </div>
-                    <div class="glass-panel p-4 rounded-xl border-cyan-500/20 flex flex-col items-center text-center space-y-2">
-                        <i data-lucide="target" class="w-8 h-8 text-purple-400"></i>
-                        <span class="text-slate-400">Hedef</span>
-                        <span class="text-white font-bold">Full-Stack Dev</span>
-                    </div>
-                </div>
-            </div>
+    <!-- About Section -->
+    <section id="about">
+        <div class="section-title">
+            <h2>HAKKIMDA</h2>
         </div>
-    </section>
-
-    <section id="dersler" class="relative z-10 py-20 px-6 lg:px-12">
-        <div class="max-w-6xl mx-auto">
-            <div class="flex items-center gap-3 mb-12">
-                <span class="text-cyan-400 code-font font-bold text-xl">02.</span>
-                <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-wide">Bilişim Dersleri & Yetenekler</h2>
-                <div class="h-[1px] bg-cyan-500/20 flex-1 ml-4"></div>
+        <div class="about-grid">
+            <div class="glass-card school-info">
+                <i class="fa-solid fa-graduation-cap" style="font-size: 2.5rem; color: var(--neon-blue); margin-bottom: 15px;"></i>
+                33333333333333333333333
+                <p>
+                    Antalya / Korkuteli'de bulunan okulumda 11. sınıf Bilişim Teknolojileri Alanı öğrencisi olarak eğitimime devam etmekteyim. Teknolojiye, yazılım geliştirmeye ve yeni nesil web sistemlerine büyük ilgi duyuyorum.
+                </p>
             </div>
-
-            <!-- Skill Cards Grid -->
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Course 1: Web Tasarım -->
-                <div class="glass-panel p-6 rounded-xl border-cyan-500/20 hover:border-cyan-400/60 transition-all group cyber-corner">
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="w-12 h-12 rounded-lg bg-cyan-950/80 border border-cyan-500/40 flex items-center justify-center text-cyan-400 group-hover:scale-110 transition-transform">
-                            <i data-lucide="layout" class="w-6 h-6"></i>
-                        </div>
-                        <span class="code-font text-xs text-cyan-400 font-semibold">%85</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-2">Web Tasarım & Programlama</h3>
-                    <p class="text-xs text-slate-400 mb-4">HTML5, CSS3, Tailwind CSS, JavaScript temelleri ve duyarlı (responsive) arayüz geliştirme.</p>
-                    <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
-                        <div class="bg-gradient-to-r from-cyan-500 to-blue-500 h-full rounded-full" style="width: 85%"></div>
-                    </div>
-                </div>
-
-                <!-- Course 2: Nesne Yönelimli Programlama -->
-                <div class="glass-panel p-6 rounded-xl border-cyan-500/20 hover:border-cyan-400/60 transition-all group cyber-corner">
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="w-12 h-12 rounded-lg bg-pink-950/80 border border-pink-500/40 flex items-center justify-center text-pink-400 group-hover:scale-110 transition-transform">
-                            <i data-lucide="code" class="w-6 h-6"></i>
-                        </div>
-                        <span class="code-font text-xs text-pink-400 font-semibold">%80</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-2">Nesne Yönelimli Programlama</h3>
-                    <p class="text-xs text-slate-400 mb-4">C# / Python algoritmaları, sınıf yapıları, kalıtım, fonksiyonlar ve mantıksal problem çözme.</p>
-                    <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
-                        <div class="bg-gradient-to-r from-pink-500 to-purple-500 h-full rounded-full" style="width: 80%"></div>
-                    </div>
-                </div>
-
-                <!-- Course 3: Ağ Teknolojileri -->
-                <div class="glass-panel p-6 rounded-xl border-cyan-500/20 hover:border-cyan-400/60 transition-all group cyber-corner">
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="w-12 h-12 rounded-lg bg-emerald-950/80 border border-emerald-500/40 flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform">
-                            <i data-lucide="network" class="w-6 h-6"></i>
-                        </div>
-                        <span class="code-font text-xs text-emerald-400 font-semibold">%75</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-2">Ağ Teknolojileri & Sistemler</h3>
-                    <p class="text-xs text-slate-400 mb-4">IP yapılandırma, OSI katmanları, yerel ağ kurulumları (LAN) ve temel ağ güvenliği ilkeleri.</p>
-                    <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
-                        <div class="bg-gradient-to-r from-emerald-500 to-teal-500 h-full rounded-full" style="width: 75%"></div>
-                    </div>
-                </div>
-
-                <!-- Course 4: Veritabanı -->
-                <div class="glass-panel p-6 rounded-xl border-cyan-500/20 hover:border-cyan-400/60 transition-all group cyber-corner">
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="w-12 h-12 rounded-lg bg-purple-950/80 border border-purple-500/40 flex items-center justify-center text-purple-400 group-hover:scale-110 transition-transform">
-                            <i data-lucide="database" class="w-6 h-6"></i>
-                        </div>
-                        <span class="code-font text-xs text-purple-400 font-semibold">%78</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-2">Veritabanı Yönetimi</h3>
-                    <p class="text-xs text-slate-400 mb-4">SQL sorguları, MySQL / MS SQL ilişkisel veritabanı tasarımı, tablo ilişkileri ve veri çekme.</p>
-                    <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
-                        <div class="bg-gradient-to-r from-purple-500 to-indigo-500 h-full rounded-full" style="width: 78%"></div>
-                    </div>
-                </div>
-
-                <!-- Course 5: Donanım & Sistem -->
-                <div class="glass-panel p-6 rounded-xl border-cyan-500/20 hover:border-cyan-400/60 transition-all group cyber-corner">
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="w-12 h-12 rounded-lg bg-amber-950/80 border border-amber-500/40 flex items-center justify-center text-amber-400 group-hover:scale-110 transition-transform">
-                            <i data-lucide="cpu" class="w-6 h-6"></i>
-                        </div>
-                        <span class="code-font text-xs text-amber-400 font-semibold">%88</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-2">Aksamlara Müdahale & Donanım</h3>
-                    <p class="text-xs text-slate-400 mb-4">Bilgisayar bileşenleri montajı, arıza tespiti, işletim sistemi kurulumları ve bakım.</p>
-                    <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
-                        <div class="bg-gradient-to-r from-amber-500 to-orange-500 h-full rounded-full" style="width: 88%"></div>
-                    </div>
-                </div>
-
-                <!-- Course 6: Siber Güvenlik Temelleri -->
-                <div class="glass-panel p-6 rounded-xl border-cyan-500/20 hover:border-cyan-400/60 transition-all group cyber-corner">
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="w-12 h-12 rounded-lg bg-red-950/80 border border-red-500/40 flex items-center justify-center text-red-400 group-hover:scale-110 transition-transform">
-                            <i data-lucide="shield-alert" class="w-6 h-6"></i>
-                        </div>
-                        <span class="code-font text-xs text-red-400 font-semibold">%70</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-2">Siber Güvenlik Temelleri</h3>
-                    <p class="text-xs text-slate-400 mb-4">Güvenli parola politikaları, sosyal mühendislik farkındalığı ve temel sistem korumaları.</p>
-                    <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
-                        <div class="bg-gradient-to-r from-red-500 to-pink-500 h-full rounded-full" style="width: 70%"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="projeler" class="relative z-10 py-20 px-6 lg:px-12 border-t border-cyan-500/10 bg-slate-950/40">
-        <div class="max-w-6xl mx-auto">
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-10">
-                <div class="flex items-center gap-3">
-                    <span class="text-cyan-400 code-font font-bold text-xl">03.</span>
-                    <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-wide">Projelerim</h2>
-                </div>
-
-                <!-- Filter Pills -->
-                <div id="projectFilters" class="flex flex-wrap gap-2 code-font text-xs">
-                    <button data-filter="all" class="px-4 py-1.5 rounded-md bg-cyan-500 text-slate-950 font-bold border border-cyan-400 transition-all">TÜMÜ</button>
-                    <button data-filter="web" class="px-4 py-1.5 rounded-md glass-panel text-slate-300 hover:text-cyan-400 border border-cyan-500/30 transition-all">WEB</button>
-                    <button data-filter="software" class="px-4 py-1.5 rounded-md glass-panel text-slate-300 hover:text-cyan-400 border border-cyan-500/30 transition-all">YAZILIM</button>
-                    <button data-filter="network" class="px-4 py-1.5 rounded-md glass-panel text-slate-300 hover:text-cyan-400 border border-cyan-500/30 transition-all">AĞ</button>
-                </div>
-            </div>
-
-            <!-- Projects Grid -->
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project 1 -->
-                <div class="project-card glass-panel rounded-xl overflow-hidden border-cyan-500/20 hover:border-cyan-400 transition-all group" data-category="web">
-                    <div class="relative h-48 bg-slate-900 overflow-hidden flex items-center justify-center">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 to-transparent z-10"></div>
-                        <!-- Futuristic Placeholder Graphic -->
-                        <div class="text-cyan-500/40 group-hover:scale-110 group-hover:text-cyan-400 transition-all duration-500">
-                            <i data-lucide="globe" class="w-16 h-16"></i>
-                        </div>
-                        <span class="absolute top-3 left-3 z-20 px-2.5 py-1 rounded bg-cyan-950/80 text-cyan-300 border border-cyan-500/40 code-font text-[10px]">WEB TASARIM</span>
-                    </div>
-                    <div class="p-6 space-y-3">
-                        <h3 class="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors">Futuristik Okul Tanıtım Portalı</h3>
-                        <p class="text-xs text-slate-400 leading-relaxed">Korkuteli Nene Hatun Kız MTAL Bilişim Bölümü için tasarlanmış modern, responsive tanıtım arayüzü.</p>
-                        <div class="flex flex-wrap gap-1.5 pt-2 code-font text-[10px]">
-                            <span class="px-2 py-0.5 rounded bg-slate-800 text-cyan-300">HTML5</span>
-                            <span class="px-2 py-0.5 rounded bg-slate-800 text-cyan-300">Tailwind CSS</span>
-                            <span class="px-2 py-0.5 rounded bg-slate-800 text-cyan-300">JavaScript</span>
-                        </div>
-                        <div class="pt-4 flex items-center justify-between text-xs code-font">
-                            <button onclick="showProjectDetails('Okul Tanıtım Portalı', 'HTML5 ve Tailwind CSS ile geliştirilmiş modern okul tanıtım web portalı projesi.')" class="text-cyan-400 hover:text-cyan-300 flex items-center gap-1">
-                                Detayları Gör <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="project-card glass-panel rounded-xl overflow-hidden border-cyan-500/20 hover:border-cyan-400 transition-all group" data-category="software">
-                    <div class="relative h-48 bg-slate-900 overflow-hidden flex items-center justify-center">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 to-transparent z-10"></div>
-                        <div class="text-pink-500/40 group-hover:scale-110 group-hover:text-pink-400 transition-all duration-500">
-                            <i data-lucide="terminal" class="w-16 h-16"></i>
-                        </div>
-                        <span class="absolute top-3 left-3 z-20 px-2.5 py-1 rounded bg-pink-950/80 text-pink-300 border border-pink-500/40 code-font text-[10px]">YAZILIM</span>
-                    </div>
-                    <div class="p-6 space-y-3">
-                        <h3 class="text-lg font-bold text-white group-hover:text-pink-400 transition-colors">Öğrenci Not Hesaplama Konsolu</h3>
-                        <p class="text-xs text-slate-400 leading-relaxed">Ders ortalamaları, takdir/teşekkür durumları ve performans puanlarını analiz eden C# konsol uygulaması.</p>
-                        <div class="flex flex-wrap gap-1.5 pt-2 code-font text-[10px]">
-                            <span class="px-2 py-0.5 rounded bg-slate-800 text-pink-300">C#</span>
-                            <span class="px-2 py-0.5 rounded bg-slate-800 text-pink-300">Algoritma</span>
-                            <span class="px-2 py-0.5 rounded bg-slate-800 text-pink-300">CLI</span>
-                        </div>
-                        <div class="pt-4 flex items-center justify-between text-xs code-font">
-                            <button onclick="showProjectDetails('Not Hesaplama Konsolu', 'Nesne Yönelimli Programlama dersi kapsamında C# ile geliştirilmiş öğrenci otomasyon modülü.')" class="text-pink-400 hover:text-pink-300 flex items-center gap-1">
-                                Detayları Gör <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="project-card glass-panel rounded-xl overflow-hidden border-cyan-500/20 hover:border-cyan-400 transition-all group" data-category="network">
-                    <div class="relative h-48 bg-slate-900 overflow-hidden flex items-center justify-center">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 to-transparent z-10"></div>
-                        <div class="text-emerald-500/40 group-hover:scale-110 group-hover:text-emerald-400 transition-all duration-500">
-                            <i data-lucide="server" class="w-16 h-16"></i>
-                        </div>
-                        <span class="absolute top-3 left-3 z-20 px-2.5 py-1 rounded bg-emerald-950/80 text-emerald-300 border border-emerald-500/40 code-font text-[10px]">AĞ / SİSTEM</span>
-                    </div>
-                    <div class="p-6 space-y-3">
-                        <h3 class="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors">Okul Ağ Topolojisi Simülasyonu</h3>
-                        <p class="text-xs text-slate-400 leading-relaxed">Cisco Packet Tracer üzerinde tasarlanmış VLAN ve DHCP yapılandırmalı okul lab ağı projesi.</p>
-                        <div class="flex flex-wrap gap-1.5 pt-2 code-font text-[10px]">
-                            <span class="px-2 py-0.5 rounded bg-slate-800 text-emerald-300">Packet Tracer</span>
-                            <span class="px-2 py-0.5 rounded bg-slate-800 text-emerald-300">VLAN</span>
-                            <span class="px-2 py-0.5 rounded bg-slate-800 text-emerald-300">IP Subnet</span>
-                        </div>
-                        <div class="pt-4 flex items-center justify-between text-xs code-font">
-                            <button onclick="showProjectDetails('Ağ Topolojisi Simülasyonu', 'Ağ Teknolojileri dersinde geliştirilmiş, alt ağlara bölünmüş güvenli laboratuvar ağ modeli.')" class="text-emerald-400 hover:text-emerald-300 flex items-center gap-1">
-                                Detayları Gör <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 4 (Placeholder for Future Projects) -->
-                <div class="project-card glass-panel rounded-xl overflow-hidden border-cyan-500/20 hover:border-cyan-400 transition-all group border-dashed" data-category="web">
-                    <div class="relative h-48 bg-slate-900/50 flex items-center justify-center">
-                        <div class="text-slate-600 group-hover:text-cyan-400 transition-colors">
-                            <i data-lucide="plus-circle" class="w-12 h-12"></i>
-                        </div>
-                        <span class="absolute top-3 left-3 z-20 px-2.5 py-1 rounded bg-slate-800 text-slate-400 code-font text-[10px]">YENİ PROJE YERİ</span>
-                    </div>
-                    <div class="p-6 space-y-3">
-                        <h3 class="text-lg font-bold text-slate-300">[Gelecek Proje #4]</h3>
-                        <p class="text-xs text-slate-500 leading-relaxed">Betül Dinçay tarafından 11./12. sınıfta eklenecek yeni web veya mobil uygulama çalışması.</p>
-                        <div class="flex flex-wrap gap-1.5 pt-2 code-font text-[10px]">
-                            <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-500">React</span>
-                            <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-500">Node.js</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="iletisim" class="relative z-10 py-20 px-6 lg:px-12">
-        <div class="max-w-6xl mx-auto">
-            <div class="flex items-center gap-3 mb-12">
-                <span class="text-cyan-400 code-font font-bold text-xl">04.</span>
-                <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-wide">İletişim</h2>
-                <div class="h-[1px] bg-cyan-500/20 flex-1 ml-4"></div>
-            </div>
-
-            <div class="grid lg:grid-cols-12 gap-8">
-                <!-- Left: Contact Details -->
-                <div class="lg:col-span-5 space-y-6">
-                    <div class="glass-panel p-6 rounded-xl border-cyan-500/20 space-y-4">
-                        <h3 class="text-xl font-bold text-white code-font">İletişime Geçin</h3>
-                        <p class="text-xs text-slate-400 leading-relaxed">
-                            Proje fikirleri, bilişim teknolojileri çalışmaları veya okul projeleri hakkında fikir alışverişi yapmak için bana ulaşabilirsiniz.
-                        </p>
-                        
-                        <div class="space-y-3 code-font text-xs pt-2">
-                            <div class="flex items-center gap-3 text-slate-300">
-                                <div class="w-8 h-8 rounded bg-cyan-950 flex items-center justify-center text-cyan-400 border border-cyan-500/30">
-                                    <i data-lucide="mail" class="w-4 h-4"></i>
-                                </div>
-                                <span>betuldincay.bilisim@gmail.com</span>
-                            </div>
-                            <div class="flex items-center gap-3 text-slate-300">
-                                <div class="w-8 h-8 rounded bg-cyan-950 flex items-center justify-center text-cyan-400 border border-cyan-500/30">
-                                    <i data-lucide="map-pin" class="w-4 h-4"></i>
-                                </div>
-                                <span>Korkuteli Nene Hatun Kız MTAL / Antalya</span>
-                            </div>
-                            <div class="flex items-center gap-3 text-slate-300">
-                                <div class="w-8 h-8 rounded bg-cyan-950 flex items-center justify-center text-cyan-400 border border-cyan-500/30">
-                                    <i data-lucide="github" class="w-4 h-4"></i>
-                                </div>
-                                <span>github.com/betuldincay</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Cyber Status Widget -->
-                    <div class="glass-panel p-4 rounded-xl border-emerald-500/30 bg-emerald-950/10 flex items-center gap-4">
-                        <div class="w-3 h-3 rounded-full bg-emerald-400 animate-ping"></div>
-                        <div class="code-font text-xs">
-                            <span class="text-emerald-400 font-bold block">MESAJ SİSTEMİ AKTİF</span>
-                            <span class="text-slate-400">Tüm bildirimler anlık olarak iletilmektedir.</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right: Cyberpunk Form -->
-                <div class="lg:col-span-7">
-                    <form id="contactForm" class="glass-panel p-8 rounded-xl border-cyan-500/20 space-y-4 cyber-corner" onsubmit="handleFormSubmit(event)">
-                        <div class="grid sm:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block code-font text-xs text-slate-400 mb-1">ADINIZ / UNVANINIZ</label>
-                                <input type="text" required placeholder="Örn: Ahmet Yılmaz" class="w-full bg-slate-900/90 border border-slate-700 focus:border-cyan-400 rounded p-2.5 text-sm text-slate-100 outline-none transition-all code-font">
-                            </div>
-                            <div>
-                                <label class="block code-font text-xs text-slate-400 mb-1">E-POSTA ADRESİNİZ</label>
-                                <input type="email" required placeholder="ornek@mail.com" class="w-full bg-slate-900/90 border border-slate-700 focus:border-cyan-400 rounded p-2.5 text-sm text-slate-100 outline-none transition-all code-font">
-                            </div>
-                        </div>
-                        <div>
-                            <label class="block code-font text-xs text-slate-400 mb-1">KONU</label>
-                            <input type="text" required placeholder="Proje Daveti / Soru" class="w-full bg-slate-900/90 border border-slate-700 focus:border-cyan-400 rounded p-2.5 text-sm text-slate-100 outline-none transition-all code-font">
-                        </div>
-                        <div>
-                            <label class="block code-font text-xs text-slate-400 mb-1">MESAJINIZ</label>
-                            <textarea rows="4" required placeholder="Mesajınızı buraya yazınız..." class="w-full bg-slate-900/90 border border-slate-700 focus:border-cyan-400 rounded p-2.5 text-sm text-slate-100 outline-none transition-all code-font resize-none"></textarea>
-                        </div>
-                        <button type="submit" class="w-full py-3 rounded bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-bold code-font text-sm hover:opacity-90 transition-all shadow-[0_0_15px_rgba(0,240,255,0.3)] flex items-center justify-center gap-2">
-                            <i data-lucide="send" class="w-4 h-4"></i>
-                            <span>MESAJI GÖNDER</span>
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="relative z-10 border-t border-cyan-500/20 bg-slate-950/90 py-8 px-6 code-font">
-        <div class="max-w-6xl mx-auto space-y-6">
-            <!-- Console Window Bar -->
-            <div class="glass-panel rounded-lg p-4 border-cyan-500/20 text-xs text-slate-400 space-y-2">
-                <div class="flex items-center justify-between border-b border-slate-800 pb-2">
-                    <div class="flex items-center gap-2">
-                        <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
-                        <span class="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
-                        <span class="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
-                        <span class="text-slate-300 ml-2 font-semibold">TERMINAL_CONSOLE // BETUL_DINCAY_OS</span>
-                    </div>
-                    <span id="systemClock" class="text-cyan-400">00:00:00 UTC</span>
-                </div>
-                <p><span class="text-pink-500">&gt;</span> Location: <span class="text-slate-200">Korkuteli Nene Hatun Kız MTAL - Antalya</span></p>
-                <p><span class="text-pink-500">&gt;</span> Status: <span class="text-emerald-400">All systems operational. Ready for deployment.</span></p>
-            </div>
-
-            <div class="flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4 pt-2">
-                <p>© 2026 Betül Dinçay. Tüm hakları saklıdır. Bilişim Teknolojileri Öğrencisi Portfolyosu.</p>
-                <p class="flex items-center gap-1">
-                    Tasarım: <span class="text-cyan-400">Futuristic Cyber UI</span>
+            <div class="glass-card">
+                <h3 style="color: var(--neon-pink); font-family: 'Orbitron'; margin-bottom: 15px;">MİSYONUM & HEDEFLERİM</h3>
+                <p>
+                    Lise eğitimim boyunca aldığım donanım, ağ ve yazılım dersleriyle güçlü bir temel oluşturarak, üniversitede Bilgisayar / Yazılım Mühendisliği alanında uzmanlaşmayı hedefliyorum. Üreten, çözen ve sürekli öğrenen bir bilişimci olma yolunda ilerliyorum.
                 </p>
             </div>
         </div>
-    </footer>
+    </section>
 
-    <div id="codeModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center p-4">
-        <div class="glass-panel w-full max-w-2xl rounded-xl border-cyan-500/40 p-6 space-y-4 cyber-corner">
-            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-                <h3 class="text-lg font-bold text-white code-font flex items-center gap-2">
-                    <i data-lucide="file-code" class="text-cyan-400"></i>
-                    SİTE KAYNAK KODLARI & KULLANIM
-                </h3>
-                <button onclick="closeModal()" class="text-slate-400 hover:text-white">
-                    <i data-lucide="x" class="w-5 h-5"></i>
-                </button>
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="section-title">
+            <h2>ALAN DERSLERİ & BECERİLER</h2>
+        </div>
+        <div class="skills-container">
+            <div class="glass-card skill-item">
+                <h4>Web Tasarımı ve Programlama (HTML/CSS/JS) <span>85%</span></h4>
+                <div class="progress-bar"><div class="progress-fill" style="width: 85%;"></div></div>
             </div>
-            <p class="text-xs text-slate-300 leading-relaxed">
-                Betül, bu web sayfası tek bir <code class="text-cyan-400 font-bold">index.html</code> dosyası içerecek şekilde hazırlanmıştır. HTML, CSS (Tailwind CSS) ve JavaScript kodları bir aradadır. İleride projelerini eklemek için kod içerisindeki <code class="text-pink-400">project-card</code> bölümlerini çoğaltabilirsin.
-            </p>
-            <div class="bg-slate-950 p-4 rounded text-xs code-font text-cyan-300 overflow-x-auto border border-slate-800 max-h-48">
-                &lt;!-- BETÜL DİNÇAY PORTFOLYO KOD YAPISI --&gt;<br>
-                1. Arka Plan Parçacık Motoru (HTML Canvas)<br>
-                2. Responsive Siberpunk Menü<br>
-                3. Dinamik Yazma Efekti JS<br>
-                4. Proje Filtreleme ve Modal Bildirim Sistemi
+            <div class="glass-card skill-item">
+                <h4>Nesne Yönelimli Programlama (C#) <span>75%</span></h4>
+                <div class="progress-bar"><div class="progress-fill" style="width: 75%;"></div></div>
             </div>
-            <div class="flex justify-end gap-3 pt-2">
-                <button onclick="copyNotice()" class="px-4 py-2 rounded bg-cyan-500 text-slate-950 font-bold code-font text-xs hover:bg-cyan-400 transition-all">
-                    Bilgiyi Kopyala
-                </button>
-                <button onclick="closeModal()" class="px-4 py-2 rounded glass-panel text-slate-300 code-font text-xs">
-                    Kapat
-                </button>
+            <div class="glass-card skill-item">
+                <h4>Veritabanı Mantığı & SQL <span>70%</span></h4>
+                <div class="progress-bar"><div class="progress-fill" style="width: 70%;"></div></div>
+            </div>
+            <div class="glass-card skill-item">
+                <h4>Ağ Sistemleri ve Donanım <span>80%</span></h4>
+                <div class="progress-bar"><div class="progress-fill" style="width: 80%;"></div></div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Notification Toast -->
-    <div id="toast" class="fixed bottom-6 right-6 z-50 glass-panel border-cyan-400 text-cyan-300 code-font text-xs px-4 py-3 rounded-lg shadow-lg hidden flex items-center gap-2">
-        <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
-        <span id="toastMsg">İşlem Başarılı!</span>
-    </div>
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="section-title">
+            <h2>PROJELERİM</h2>
+        </div>
 
+        <div class="project-filter">
+            <button class="filter-btn active" data-filter="all">Tümü</button>
+            <button class="filter-btn" data-filter="web">Web</button>
+            <button class="filter-btn" data-filter="csharp">C# Desktop</button>
+            <button class="filter-btn" data-filter="future">Gelecek Projeler</button>
+        </div>
+
+        <div class="projects-grid">
+            <!-- Proje Kartı 1 -->
+            <div class="project-card" data-category="web">
+                <div class="project-img-placeholder">
+                    <i class="fa-solid fa-laptop-code"></i>
+                </div>
+                <div class="project-info">
+                    <h3>Futuristik Kişisel Portfolyo</h3>
+                    <p>Siberpunk temalı, interaktif JavaScript ve CSS animasyonları içeren kişisel tanıtım web sitesi.</p>
+                    <div class="project-tags">
+                        <span class="tag">HTML5</span>
+                        <span class="tag">CSS3</span>
+                        <span class="tag">JavaScript</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Proje Kartı 2 -->
+            <div class="project-card" data-category="csharp">
+                <div class="project-img-placeholder">
+                    <i class="fa-solid fa-database"></i>
+                </div>
+                <div class="project-info">
+                    <h3>Okul Kütüphane Otomasyonu</h3>
+                    <p>C# Form ve Access/SQL veritabanı altyapısıyla hazırlanmış kitap ve öğrenci takip sistemi.</p>
+                    <div class="project-tags">
+                        <span class="tag">C#</span>
+                        <span class="tag">WinForms</span>
+                        <span class="tag">MS Access</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Proje Kartı 3 (Şablon) -->
+            <div class="project-card" data-category="future">
+                <div class="project-img-placeholder">
+                    <i class="fa-solid fa-microchip"></i>
+                </div>
+                <div class="project-info">
+                    <h3>Yapay Zekâ Destekli Çalışma Asistanı</h3>
+                    <p>Ders çalışma planı ve soru takibi yapabilen geliştirilme aşamasındaki yenilikçi proje.</p>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">AI</span>
+                        <span class="tag">Yakında</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dynamic Terminal Section -->
+        <div class="terminal-container">
+            <div class="terminal-header">
+                <div class="dot red"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></div>
+                <span style="color: #666; font-size: 0.8rem; margin-left: 10px;">betul@nenehatun-mtal:~</span>
+            </div>
+            <div class="terminal-body" id="terminal-text">
+                &gt; Sistem başlatılıyor...<br>
+                &gt; Kullanıcı: Betül Dinçay [Korkuteli Nene Hatun Kız MTAL]<br>
+                &gt; Durum: Yeni projeler ve kodlar yüklenmeye hazır!
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Betül Dinçay. Tüm Hakları Saklıdır. | Bilişim Teknolojileri Alanı</p>
+    </footer>
+
+    <!-- JavaScript Logic -->
     <script>
-        // Initialize Lucide Icons
-        lucide.createIcons();
-
-        // 1. Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // 2. Typing Effect Logic
-        const typingTextElement = document.getElementById('typing-text');
-        const phrases = [
-            "Bilişim Teknolojileri Öğrencisi",
-            "Korkuteli Nene Hatun Kız MTAL",
-            "Geleceğin Yazılımcısı",
-            "Web & Algoritma Geliştirici"
-        ];
-        let phraseIndex = 0;
+        // Typing Effect
+        const typingText = document.getElementById('typing-text');
+        const words = ['Geleceğin Yazılımcısı', 'Web Geliştirici Adayı', 'C# & Database Sistemleri', 'Teknoloji Tutkunu'];
+        let wordIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
 
-        function typeEffect() {
-            const currentPhrase = phrases[phraseIndex];
-            
+        function type() {
+            const currentWord = words[wordIndex];
             if (isDeleting) {
-                typingTextElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                typingText.textContent = currentWord.substring(0, charIndex - 1);
                 charIndex--;
             } else {
-                typingTextElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                typingText.textContent = currentWord.substring(0, charIndex + 1);
                 charIndex++;
             }
 
-            let typeSpeed = isDeleting ? 40 : 80;
-
-            if (!isDeleting && charIndex === currentPhrase.length) {
-                typeSpeed = 2000; // Pause at end
+            if (!isDeleting && charIndex === currentWord.length) {
                 isDeleting = true;
+                setTimeout(type, 2000);
             } else if (isDeleting && charIndex === 0) {
                 isDeleting = false;
-                phraseIndex = (phraseIndex + 1) % phrases.length;
-                typeSpeed = 500;
+                wordIndex = (wordIndex + 1) % words.length;
+                setTimeout(type, 500);
+            } else {
+                setTimeout(type, isDeleting ? 50 : 100);
             }
-
-            setTimeout(typeEffect, typeSpeed);
         }
+        document.addEventListener('DOMContentLoaded', type);
 
-        window.addEventListener('DOMContentLoaded', typeEffect);
-
-        // 3. System Live Clock
-        function updateClock() {
-            const now = new Date();
-            const timeStr = now.toLocaleTimeString('tr-TR') + " (TSI)";
-            document.getElementById('systemClock').textContent = timeStr;
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
-
-        // 4. Interactive Particle Background Effect
-        const canvas = document.getElementById('particleCanvas');
+        // Interactive Particle Canvas Background
+        const canvas = document.getElementById('particles-canvas');
         const ctx = canvas.getContext('2d');
-        let particles = [];
 
         function resizeCanvas() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         }
-        window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
 
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.vx = (Math.random() - 0.5) * 0.8;
-                this.vy = (Math.random() - 0.5) * 0.8;
-                this.size = Math.random() * 2 + 1;
-                this.color = Math.random() > 0.5 ? 'rgba(0, 240, 255, ' : 'rgba(255, 0, 127, ';
-                this.alpha = Math.random() * 0.5 + 0.2;
-            }
+        const particles = [];
+        const particleCount = 60;
 
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-
-                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
-            }
-
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = this.color + this.alpha + ')';
-                ctx.fill();
-            }
-        }
-
-        function initParticles() {
-            particles = [];
-            const count = Math.min(Math.floor(window.innerWidth / 15), 60);
-            for (let i = 0; i < count; i++) {
-                particles.push(new Particle());
-            }
+        for (let i = 0; i < particleCount; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 2 + 1,
+                vx: (Math.random() - 0.5) * 0.8,
+                vy: (Math.random() - 0.5) * 0.8,
+                color: Math.random() > 0.5 ? '#00f0ff' : '#7000ff'
+            });
         }
 
         function animateParticles() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Connect nearby particles with glowing lines
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                particles[i].draw();
+            for (let i = 0; i < particleCount; i++) {
+                let p = particles[i];
+                p.x += p.vx;
+                p.y += p.vy;
 
-                for (let j = i + 1; j < particles.length; j++) {
-                    const dx = particles[i].x - particles[j].x;
-                    const dy = particles[i].y - particles[j].y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
+                if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
 
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = p.color;
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = p.color;
+                ctx.fill();
+
+                // Connect nearby particles with lines
+                for (let j = i + 1; j < particleCount; j++) {
+                    let p2 = particles[j];
+                    let dist = Math.hypot(p.x - p2.x, p.y - p2.y);
                     if (dist < 120) {
                         ctx.beginPath();
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.strokeStyle = `rgba(0, 240, 255, ${0.15 * (1 - dist / 120)})`;
-                        ctx.lineWidth = 0.6;
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.strokeStyle = `rgba(0, 240, 255, ${1 - dist / 120})`;
+                        ctx.lineWidth = 0.5;
                         ctx.stroke();
                     }
                 }
             }
             requestAnimationFrame(animateParticles);
         }
-
-        initParticles();
         animateParticles();
 
-        // 5. Project Filter Logic
-        const filterBtns = document.querySelectorAll('#projectFilters button');
+        // Project Filtering System
+        const filterBtns = document.querySelectorAll('.filter-btn');
         const projectCards = document.querySelectorAll('.project-card');
 
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
-                // Update active state
-                filterBtns.forEach(b => {
-                    b.classList.remove('bg-cyan-500', 'text-slate-950', 'font-bold');
-                    b.classList.add('glass-panel', 'text-slate-300');
-                });
-                btn.classList.add('bg-cyan-500', 'text-slate-950', 'font-bold');
-                btn.classList.remove('glass-panel', 'text-slate-300');
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
 
                 const filter = btn.getAttribute('data-filter');
 
@@ -851,41 +787,6 @@
                 });
             });
         });
-
-        // 6. Modal & Toast Functions
-        function openModal() {
-            document.getElementById('codeModal').classList.remove('hidden');
-            document.getElementById('codeModal').classList.add('flex');
-        }
-
-        function closeModal() {
-            document.getElementById('codeModal').classList.add('hidden');
-            document.getElementById('codeModal').classList.remove('flex');
-        }
-
-        function showToast(msg) {
-            const toast = document.getElementById('toast');
-            document.getElementById('toastMsg').textContent = msg;
-            toast.classList.remove('hidden');
-            setTimeout(() => {
-                toast.classList.add('hidden');
-            }, 3000);
-        }
-
-        function copyNotice() {
-            showToast('Bilgi notu kopyalandı!');
-            closeModal();
-        }
-
-        function showProjectDetails(title, desc) {
-            showToast(`${title}: ${desc}`);
-        }
-
-        function handleFormSubmit(e) {
-            e.preventDefault();
-            showToast('Mesajınız başarıyla iletildi! Betül sizinle iletişime geçecektir.');
-            e.target.reset();
-        }
     </script>
 </body>
 </html>
