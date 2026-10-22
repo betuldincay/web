@@ -86,6 +86,7 @@
             display: flex;
             list-style: none;
             gap: 2rem;
+            align-items: center;
         }
 
         .nav-links a {
@@ -117,6 +118,26 @@
 
         .nav-links a:hover::after {
             width: 100%;
+        }
+
+        /* Nav Accent Button for Game */
+        .nav-game-link {
+            color: var(--neon-green) !important;
+            border: 1px solid var(--neon-green);
+            padding: 5px 12px;
+            border-radius: 20px;
+            box-shadow: 0 0 10px rgba(0, 255, 102, 0.2);
+            transition: all 0.3s;
+        }
+
+        .nav-game-link:hover {
+            background: rgba(0, 255, 102, 0.15);
+            box-shadow: 0 0 15px var(--neon-green) !important;
+            text-shadow: 0 0 8px var(--neon-green) !important;
+        }
+
+        .nav-game-link::after {
+            display: none !important;
         }
 
         /* Hero Section */
@@ -173,13 +194,14 @@
 
         .btn-group {
             display: flex;
-            gap: 20px;
+            gap: 15px;
+            flex-wrap: wrap;
         }
 
         .btn {
-            padding: 12px 30px;
+            padding: 12px 25px;
             font-family: 'Orbitron', sans-serif;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 600;
             text-decoration: none;
             border-radius: 5px;
@@ -211,6 +233,19 @@
         .btn-secondary:hover {
             background: rgba(0, 240, 255, 0.1);
             box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+        }
+
+        .btn-game {
+            background: transparent;
+            color: var(--neon-green);
+            border: 1px solid var(--neon-green);
+            box-shadow: 0 0 10px rgba(0, 255, 102, 0.2);
+        }
+
+        .btn-game:hover {
+            background: rgba(0, 255, 102, 0.15);
+            box-shadow: 0 0 20px rgba(0, 255, 102, 0.5);
+            transform: translateY(-3px);
         }
 
         /* Avatar Container */
@@ -365,6 +400,7 @@
             justify-content: center;
             gap: 15px;
             margin-bottom: 40px;
+            flex-wrap: wrap;
         }
 
         .filter-btn {
@@ -398,6 +434,8 @@
             border-radius: 12px;
             overflow: hidden;
             transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
         }
 
         .project-card:hover {
@@ -419,6 +457,9 @@
 
         .project-info {
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
         }
 
         .project-info h3 {
@@ -443,6 +484,24 @@
             padding: 3px 8px;
             border-radius: 4px;
             border: 1px solid rgba(112, 0, 255, 0.4);
+        }
+
+        .project-link-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 15px;
+            color: var(--neon-green);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+
+        .project-link-btn:hover {
+            color: #fff;
+            text-shadow: 0 0 8px var(--neon-green);
+            transform: translateX(5px);
         }
 
         /* Terminal Footer */
@@ -498,6 +557,7 @@
             .about-grid { grid-template-columns: 1fr; }
             .avatar-frame { width: 260px; height: 260px; }
             .avatar-img { width: 220px; height: 220px; }
+            .nav-links { gap: 1rem; font-size: 0.9rem; }
         }
     </style>
 </head>
@@ -516,6 +576,7 @@
             <li><a href="#about">Hakkımda</a></li>
             <li><a href="#skills">Dersler & Beceriler</a></li>
             <li><a href="#projects">Projelerim</a></li>
+            <li><a href="https://betuldincay.github.io/snake" target="_blank" class="nav-game-link"><i class="fa-solid fa-gamepad"></i> Yılan Oyunu</a></li>
         </ul>
     </header>
 
@@ -523,17 +584,16 @@
     <section id="home" class="hero">
         <div class="hero-content">
             <span class="badge">&lt;Bilişim Teknolojileri Öğrencisi /&gt;</span>
-            <h1>BETÜL DİNCAY</h1>
+            <h1>BETÜL DİNÇAY</h1>
             <div class="typing-container">
                 <span id="typing-text"></span>
             </div>
             <p>
-                yapıyoz biseyler dostum DİVALAR KOD YAZAR
-#DİVA
-
+                yapıyoz biseyler. DİVALAR KOD YAZAR
             </p>
             <div class="btn-group">
                 <a href="#projects" class="btn btn-primary"><i class="fa-solid fa-rocket"></i> Projelerimi İncele :D</a>
+                <a href="https://betuldincay.github.io/snake" target="_blank" class="btn btn-game"><i class="fa-solid fa-staff-snake"></i> Yılan Oyunu (PWA)</a>
                 <a href="#about" class="btn btn-secondary"><i class="fa-solid fa-user"></i> Ben Kimimm?</a>
             </div>
         </div>
@@ -552,8 +612,7 @@
         </div>
         <div class="about-grid">
             <div class="glass-card school-info">
-                <i class="fa-solid fa-graduation-cap" style="font-size: 2.5rem; color: var(--neon-pink); margin-bottom: 15px;"></i>
-                33333333333333333333333
+                <i class="fa-solid fa-graduation-cap" style="font-size: 2.5rem; color: var(--neon-blue); margin-bottom: 15px;"></i>
                 <p>
                     Antalya / Korkuteli'de bulunan okulumda 11. sınıf Bilişim Teknolojileri Alanı öğrencisi olarak eğitimime devam etmekteyim. Teknolojiye, yazılım geliştirmeye ve yeni nesil web sistemlerine büyük ilgi duyuyorum.
                 </p>
@@ -561,7 +620,7 @@
             <div class="glass-card">
                 <h3 style="color: var(--neon-pink); font-family: 'Orbitron'; margin-bottom: 15px;">MİSYONUM & HEDEFLERİM</h3>
                 <p>
-                     heves ettiğim yoldan ilerliyorum Lise eğitimim boyunca aldığım donanım, ağ ve yazılım dersleriyle güçlü bir temel oluşturarak, üniversitede Bilgisayar / Yazılım Mühendisliği alanında uzmanlaşmayı hedefliyorum. Üreten, çözen ve sürekli öğrenen bir bilişimci olma yolunda ilerliyorum.İNŞ
+                    Küçüklüğümdn beri heves ettiğim yoldan ilerliyorum Lise eğitimim boyunca aldığım donanım, ağ ve yazılım dersleriyle güçlü bir temel oluşturarak, üniversitede Bilgisayar / Yazılım Mühendisliği alanında uzmanlaşmayı hedefliyorum. Üreten, çözen ve sürekli öğrenen bir bilişimci olma yolunda ilerliyorum.
                 </p>
             </div>
         </div>
@@ -600,13 +659,33 @@
 
         <div class="project-filter">
             <button class="filter-btn active" data-filter="all">Tümü</button>
-            <button class="filter-btn" data-filter="web">Web</button>
+            <button class="filter-btn" data-filter="web">Web & PWA</button>
             <button class="filter-btn" data-filter="csharp">C# Desktop</button>
             <button class="filter-btn" data-filter="future">Gelecek Projeler</button>
         </div>
 
         <div class="projects-grid">
-            <!-- Proje Kartı 1 -->
+            <!-- Proje Kartı 1: Yılan Oyunu (PWA) -->
+            <div class="project-card" data-category="web">
+                <div class="project-img-placeholder" style="color: var(--neon-green);">
+                    <i class="fa-solid fa-gamepad"></i>
+                </div>
+                <div class="project-info">
+                    <h3>PWA Yılan Oyunu</h3>
+                    <p>Mobil ve masaüstü cihazlara yüklenebilir, çevrimdışı (PWA) çalışabilen klasik yılan oyunu web uygulaması.</p>
+                    <div class="project-tags">
+                        <span class="tag">HTML5</span>
+                        <span class="tag">CSS3</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">PWA</span>
+                    </div>
+                    <a href="https://betuldincay.github.io/snake" target="_blank" class="project-link-btn">
+                        Oyunu Oyna <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Proje Kartı 2 -->
             <div class="project-card" data-category="web">
                 <div class="project-img-placeholder">
                     <i class="fa-solid fa-laptop-code"></i>
@@ -622,7 +701,7 @@
                 </div>
             </div>
 
-            <!-- Proje Kartı 2 -->
+            <!-- Proje Kartı 3 -->
             <div class="project-card" data-category="csharp">
                 <div class="project-img-placeholder">
                     <i class="fa-solid fa-database"></i>
@@ -638,7 +717,7 @@
                 </div>
             </div>
 
-            <!-- Proje Kartı 3 (Şablon) -->
+            <!-- Proje Kartı 4 -->
             <div class="project-card" data-category="future">
                 <div class="project-img-placeholder">
                     <i class="fa-solid fa-microchip"></i>
@@ -666,7 +745,7 @@
             <div class="terminal-body" id="terminal-text">
                 &gt; Sistem başlatılıyor...<br>
                 &gt; Kullanıcı: Betül Dinçay [Korkuteli Nene Hatun Kız MTAL]<br>
-                &gt; Durum: Yeni projeler ve kodlar yüklenmeye hazır!
+                &gt; Durum: Yılan Oyunu (PWA) modülü yüklendi! Oynamak için bağlantıları kullanabilirsiniz.
             </div>
         </div>
     </section>
@@ -680,7 +759,7 @@
     <script>
         // Typing Effect
         const typingText = document.getElementById('typing-text');
-        const words = ['Geleceğin Yazılımcısı', 'Web Geliştirici Adayı', 'C# & Database Sistemleri', 'Teknoloji Tutkunu'];
+        const words = ['Pro olcam', 'Web Geliştirici Adayı', 'C# & Database Sistemleri', 'Teknoloji Tutkunu'];
         let wordIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
@@ -782,7 +861,7 @@
 
                 projectCards.forEach(card => {
                     if (filter === 'all' || card.getAttribute('data-category') === filter) {
-                        card.style.display = 'block';
+                        card.style.display = 'flex';
                     } else {
                         card.style.display = 'none';
                     }
